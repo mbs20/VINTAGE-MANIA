@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Blouson Bomber Olive",
+    "price": 450,
+    "category": "Jackets",
+    "size": "XL",
+    "condition": "A",
+    "description": "Blouson bomber de couleur olive avec fermetures éclair et poches pratiques. Style urbain avec logo discret sur la manche. Idéal pour les températures fraîches.",
+    "measurements": "Largeur poitrine : 55 cm, Longueur : 70 cm",
+    "defects": "",
+    "isNew": false,
+    "isOneOfOne": false,
+    "isSoldOut": true,
+    "images": [
+      "/uploads/d7c89ecc-f8e6-4a74-9981-a6454d61cf21.jpeg",
+      "/uploads/04eb22ec-b878-45fb-9bb4-2ed9ac5faea9.jpeg"
+    ],
+    "id": "f30c02b9-4117-44cf-98e6-8bc9b9a4e06a",
+    "slug": "blouson-bomber-olive"
+  }
+]
