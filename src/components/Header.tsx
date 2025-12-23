@@ -44,66 +44,78 @@ export function Header() {
     const pathname = usePathname();
 
     return (
-        <header className="sticky top-0 z-50 border-b border-forest/35 bg-ink/70 backdrop-blur">
-            <div className="mx-auto flex max-w-6xl items-center px-4 py-3 md:justify-between">
-                {/* Mobile: Left side (Menu button) */}
-                <div className="flex flex-1 items-center md:hidden">
-                    <MobileMenu />
-                </div>
-
-                {/* Logo Section - Centered on Mobile, Left on Desktop */}
-                <Link
-                    href="/"
-                    className="flex items-center gap-2 md:gap-3 transition-transform active:scale-95"
-                >
-                    <div className="relative overflow-hidden rounded-xl bg-forest/20 p-1">
-                        <Image
-                            src="/logo-vintage-mania.png"
-                            alt="Vintage Mania"
-                            width={38}
-                            height={38}
-                            priority
-                            className="rounded-lg"
-                        />
+        <header className="sticky top-0 z-50 border-b border-forest/30 bg-ink/85 backdrop-blur-md">
+            <div className="mx-auto max-w-7xl">
+                {/* Main Header Row */}
+                <div className="flex items-center justify-between px-4 py-2 lg:px-8">
+                    {/* Mobile: Menu Button */}
+                    <div className="flex flex-1 items-center md:hidden">
+                        <MobileMenu />
                     </div>
-                    <div className="flex flex-col justify-center">
-                        <div className="font-display text-xl sm:text-2xl leading-none tracking-wide text-acid">VINTAGE MANIA</div>
-                        <div className="hidden text-[10px] uppercase tracking-[0.2em] text-bone/50 sm:block">Drops & Thrift</div>
-                    </div>
-                </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden items-center gap-1 md:flex">
-                    {navLinks.map((l) => {
-                        const active = pathname === l.href;
-                        return (
-                            <Link
-                                key={l.href}
-                                href={l.href}
-                                className={cn(
-                                    'rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:text-acid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acid',
-                                    active ? 'bg-forest/40 text-bone' : 'text-bone/80 hover:bg-ink/60'
-                                )}
-                            >
-                                {l.label}
-                            </Link>
-                        );
-                    })}
-                </nav>
-
-                {/* Action Buttons - Right side */}
-                <div className="flex flex-1 items-center justify-end gap-2">
-                    <a
-                        href={siteConfig.instagramUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center rounded-xl border border-forest/50 bg-ink/40 p-2 text-bone/80 transition hover:bg-ink/60 hover:text-acid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acid"
-                        aria-label="Instagram"
+                    {/* Logo Section */}
+                    <Link
+                        href="/"
+                        className="group flex items-center gap-3 transition-transform hover:scale-[1.02] active:scale-95"
                     >
-                        <InstagramIcon className="h-5 w-5" />
-                    </a>
-                    <div className="hidden md:block">
-                        <WhatsAppButton>WhatsApp</WhatsAppButton>
+                        <div className="relative overflow-hidden rounded-xl border border-forest/30 bg-gradient-to-br from-forest/30 to-ink p-1.5 shadow-lg shadow-forest/10">
+                            <Image
+                                src="/logo-vintage-mania.png"
+                                alt="Vintage Mania"
+                                width={42}
+                                height={42}
+                                priority
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <div className="font-display text-xl leading-tight tracking-wider text-bone md:text-2xl">
+                                VINTAGE <span className="text-acid">MANIA</span>
+                            </div>
+                            <div className="hidden text-[9px] font-medium uppercase tracking-[0.25em] text-bone/50 md:block">
+                                Drops & Thrift Maroc
+                            </div>
+                        </div>
+                    </Link>
+
+                    {/* Desktop Navigation - Centered */}
+                    <nav className="hidden items-center gap-1 rounded-full border border-forest/25 bg-ink/50 px-2 py-1.5 md:flex">
+                        {navLinks.map((l) => {
+                            const active = pathname === l.href;
+                            return (
+                                <Link
+                                    key={l.href}
+                                    href={l.href}
+                                    className={cn(
+                                        'relative rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300',
+                                        active
+                                            ? 'bg-acid/15 text-acid'
+                                            : 'text-bone/70 hover:bg-forest/20 hover:text-bone'
+                                    )}
+                                >
+                                    {l.label}
+                                    {active && (
+                                        <span className="absolute -bottom-0.5 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-acid" />
+                                    )}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+
+                    {/* Action Buttons - Right side */}
+                    <div className="flex flex-1 items-center justify-end gap-3">
+                        <a
+                            href={siteConfig.instagramUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group flex items-center justify-center rounded-full border border-forest/40 bg-ink/50 p-2.5 text-bone/70 transition-all hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400"
+                            aria-label="Instagram"
+                        >
+                            <InstagramIcon className="h-4 w-4" />
+                        </a>
+                        <div className="hidden md:block">
+                            <WhatsAppButton>Commander</WhatsAppButton>
+                        </div>
                     </div>
                 </div>
             </div>
