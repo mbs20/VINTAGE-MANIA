@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 import { categories } from '@/data/products';
 import type { ProductCategory } from '@/data/products';
 import type { SortKey } from '@/lib/catalogue';
