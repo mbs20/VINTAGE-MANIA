@@ -1,8 +1,42 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, type SVGProps } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// ... rest of imports
+import { siteConfig } from '@/config/site';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { cn } from '@/lib/utils';
+
+const navLinks = [
+  { href: '/catalogue', label: 'Catalogue' },
+  { href: '/commander', label: 'Commander' },
+  { href: '/livraison-faq', label: 'Livraison & FAQ' },
+  { href: '/contact', label: 'Contact' }
+];
+
+function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M12 16.2A4.2 4.2 0 1 0 12 7.8a4.2 4.2 0 0 0 0 8.4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M17.4 6.6h.01"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -15,6 +49,7 @@ export function Header() {
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex flex-1 items-center md:hidden outline-none"
+          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest/20 text-acid/80 transition-transform active:scale-90">
             {isMenuOpen ? (
@@ -45,7 +80,7 @@ export function Header() {
               className="rounded-lg"
             />
           </div>
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center text-center md:text-left">
             <div className="font-display text-xl sm:text-2xl leading-none tracking-wide text-acid">VINTAGE MANIA</div>
             <div className="hidden text-[10px] uppercase tracking-[0.2em] text-bone/50 sm:block">Drops & Thrift</div>
           </div>
@@ -90,7 +125,7 @@ export function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 top-[65px] z-40 bg-ink/95 backdrop-blur-xl transition-all duration-300 md:hidden flex flex-col items-center justify-center",
+          "fixed inset-0 top-[65px] z-40 bg-ink/95 backdrop-blur-xl transition-all duration-300 md:hidden flex flex-col items-center justify-center overflow-hidden",
           isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"
         )}
       >
@@ -104,7 +139,7 @@ export function Header() {
                 "font-display text-4xl tracking-widest transition-all duration-300",
                 pathname === l.href ? "text-acid scale-110" : "text-bone/60 hover:text-bone"
               )}
-              style={{ transitionDelay: `${i * 50}ms` }}
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
               {l.label}
             </Link>
