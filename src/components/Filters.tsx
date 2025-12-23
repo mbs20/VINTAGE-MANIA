@@ -1,10 +1,9 @@
 'use client';
 
 import type { ChangeEvent, ReactNode } from 'react';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { ProductCategory, ProductCondition } from '@/data/products';
 import { categories } from '@/data/products';
-import { cn } from '@/lib/utils';
 
 export type CatalogueFilters = {
   category?: ProductCategory;
@@ -157,51 +156,5 @@ function Panel({ value, onChange }: Props) {
 }
 
 export function Filters({ value, onChange }: Props) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <div className="hidden lg:block">
-        <Panel value={value} onChange={onChange} />
-      </div>
-
-      <div className="lg:hidden">
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="inline-flex items-center justify-center rounded-xl border border-forest/45 bg-ink/45 px-4 py-2 text-sm font-bold text-bone/80 hover:bg-ink/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acid"
-        >
-          Filtres
-        </button>
-
-        {/* Mobile Filter Drawer - Only render when open */}
-        {open && (
-          <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-[60] bg-black/60"
-              onClick={() => setOpen(false)}
-            />
-
-            {/* Filter Panel */}
-            <div className="fixed bottom-0 left-0 right-0 z-[70] max-h-[85vh] overflow-auto rounded-t-3xl border-t border-forest/35 bg-ink/95 p-4 shadow-2xl animate-slide-up">
-              <div className="flex items-center justify-between">
-                <div className="font-display text-2xl tracking-wide">Filtres</div>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl border border-forest/40 bg-ink/40 px-4 py-2 text-sm font-bold"
-                >
-                  Fermer
-                </button>
-              </div>
-              <div className="mt-4">
-                <Panel value={value} onChange={onChange} />
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </>
-  );
+  return <Panel value={value} onChange={onChange} />;
 }
