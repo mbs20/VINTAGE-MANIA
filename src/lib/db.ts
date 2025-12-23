@@ -1,7 +1,9 @@
 import { sql } from '@vercel/postgres';
+import { unstable_noStore as noStore } from 'next/cache';
 import type { Product } from '@/data/products';
 
 export async function getProducts(): Promise<Product[]> {
+  noStore();
   try {
     const { rows } = await sql`
       SELECT * FROM products ORDER BY created_at DESC
@@ -31,6 +33,7 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  noStore();
   try {
     const { rows } = await sql`SELECT * FROM products WHERE slug = ${slug}`;
     if (rows.length === 0) return undefined;
