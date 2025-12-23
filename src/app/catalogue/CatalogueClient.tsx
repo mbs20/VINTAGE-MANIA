@@ -34,7 +34,7 @@ export function CatalogueClient({
     const filtered = useMemo(() => {
         const a = applyFilters(products, filters);
         return applySort(a, sort);
-    }, [filters, sort]);
+    }, [filters, sort, products]);
 
     return (
         <div className="mx-auto max-w-6xl px-4 py-10">

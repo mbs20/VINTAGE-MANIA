@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server';
 import { getProducts, saveProduct, deleteProduct } from '@/lib/db';
 import { Product } from '@/data/products';

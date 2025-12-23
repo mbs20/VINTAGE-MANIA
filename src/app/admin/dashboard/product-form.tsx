@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { categories, Product, ProductCategory, ProductCondition } from '@/data/products';
+import { categories, Product } from '@/data/products';
 import Image from 'next/image';
 
 interface ProductFormProps {

@@ -69,7 +69,7 @@ export async function saveProduct(product: Product): Promise<Product> {
         ${product.id}, ${product.slug}, ${product.sku}, ${product.name}, ${product.category},
         ${product.price}, ${product.size}, ${product.condition}, ${product.isNew},
         ${product.isOneOfOne}, ${product.isSoldOut}, ${product.description},
-        ${product.measurements}, ${product.defects || null}, ${product.images as any}
+        ${product.measurements}, ${product.defects || null}, ${product.images as any /* eslint-disable-line @typescript-eslint/no-explicit-any */}
       )
       ON CONFLICT (id) DO UPDATE SET
         name = EXCLUDED.name,

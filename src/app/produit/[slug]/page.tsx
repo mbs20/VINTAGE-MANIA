@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProductBySlug, getProducts } from '@/lib/db';
@@ -7,7 +6,6 @@ import { ProductCard } from '@/components/ProductCard';
 import { StickerBadge } from '@/components/StickerBadge';
 import { buildProductWhatsAppMessage, formatPrice } from '@/lib/whatsapp';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { ProductImagePlaceholder } from '@/components/ProductImagePlaceholder';
 import { ProductGallery } from '@/components/ProductGallery';
 import { ScrollReveal } from '@/components/ScrollReveal';
 

@@ -102,7 +102,7 @@ export default function DashboardPage() {
 
                 {products.length === 0 && !showForm && (
                     <div className="rounded-xl border border-forest/30 p-8 text-center text-bone/60">
-                        Aucun produit. Cliquez sur "Ajouter un produit" pour commencer.
+                        Aucun produit. Cliquez sur &quot;Ajouter un produit&quot; pour commencer.
                     </div>
                 )}
             </div>
