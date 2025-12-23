@@ -44,42 +44,51 @@ export function Header() {
     const pathname = usePathname();
 
     return (
-        <header className="sticky top-0 z-50 border-b border-forest/30 bg-ink/85 backdrop-blur-md">
+        <header className="sticky top-0 z-50 border-b border-forest/20 bg-ink/90 shadow-xl shadow-ink/50 backdrop-blur-lg">
             <div className="mx-auto max-w-7xl">
-                {/* Main Header Row */}
-                <div className="flex items-center justify-between px-4 py-2 lg:px-8">
+                {/* Main Header Row - Better spacing */}
+                <div className="flex items-center justify-between gap-8 px-6 py-4 lg:px-10 lg:py-5">
                     {/* Mobile: Menu Button */}
-                    <div className="flex flex-1 items-center md:hidden">
+                    <div className="flex items-center md:hidden">
                         <MobileMenu />
                     </div>
 
-                    {/* Logo Section */}
+                    {/* Logo Section with Neon Glow on Active */}
                     <Link
                         href="/"
-                        className="group flex items-center gap-3 transition-transform hover:scale-[1.02] active:scale-95"
+                        className="group flex items-center gap-4 transition-all duration-300 active:scale-95"
                     >
-                        <div className="relative overflow-hidden rounded-xl border border-forest/30 bg-gradient-to-br from-forest/30 to-ink p-1.5 shadow-lg shadow-forest/10">
-                            <Image
-                                src="/logo-vintage-mania.png"
-                                alt="Vintage Mania"
-                                width={42}
-                                height={42}
-                                priority
-                                className="rounded-lg"
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="font-display text-xl leading-tight tracking-wider text-bone md:text-2xl">
-                                VINTAGE <span className="text-acid">MANIA</span>
+                        {/* Logo Container with Neon Glow Effect */}
+                        <div className="relative">
+                            {/* Neon Glow Layer - Visible on hover/active */}
+                            <div className="absolute -inset-1 rounded-2xl bg-acid/0 blur-md transition-all duration-300 group-hover:bg-acid/30 group-active:bg-acid/50" />
+
+                            {/* Logo Box */}
+                            <div className="relative overflow-hidden rounded-2xl border-2 border-forest/40 bg-gradient-to-br from-forest/40 via-ink to-forest/20 p-2 shadow-2xl shadow-forest/20 transition-all duration-300 group-hover:border-acid/50 group-hover:shadow-acid/20 group-active:border-acid group-active:shadow-acid/40">
+                                <Image
+                                    src="/logo-vintage-mania.png"
+                                    alt="Vintage Mania"
+                                    width={48}
+                                    height={48}
+                                    priority
+                                    className="rounded-xl"
+                                />
                             </div>
-                            <div className="hidden text-[9px] font-medium uppercase tracking-[0.25em] text-bone/50 md:block">
-                                Drops & Thrift Maroc
+                        </div>
+
+                        {/* Brand Text */}
+                        <div className="flex flex-col gap-0.5">
+                            <div className="font-display text-2xl leading-none tracking-widest text-bone transition-colors group-hover:text-acid md:text-3xl">
+                                VINTAGE <span className="text-acid transition-all group-hover:drop-shadow-[0_0_8px_rgba(92,255,92,0.6)]">MANIA</span>
+                            </div>
+                            <div className="hidden text-[10px] font-semibold uppercase tracking-[0.3em] text-bone/40 md:block">
+                                Drops & Thrift • Maroc
                             </div>
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation - Centered */}
-                    <nav className="hidden items-center gap-1 rounded-full border border-forest/25 bg-ink/50 px-2 py-1.5 md:flex">
+                    {/* Desktop Navigation - Pill Style with shadow */}
+                    <nav className="hidden items-center gap-2 rounded-2xl border border-forest/30 bg-ink/60 px-3 py-2 shadow-lg shadow-ink/30 md:flex">
                         {navLinks.map((l) => {
                             const active = pathname === l.href;
                             return (
@@ -87,31 +96,31 @@ export function Header() {
                                     key={l.href}
                                     href={l.href}
                                     className={cn(
-                                        'relative rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300',
+                                        'relative rounded-xl px-5 py-2 text-sm font-semibold tracking-wide transition-all duration-300',
                                         active
-                                            ? 'bg-acid/15 text-acid'
-                                            : 'text-bone/70 hover:bg-forest/20 hover:text-bone'
+                                            ? 'bg-acid/20 text-acid shadow-inner shadow-acid/10'
+                                            : 'text-bone/60 hover:bg-forest/25 hover:text-bone'
                                     )}
                                 >
                                     {l.label}
                                     {active && (
-                                        <span className="absolute -bottom-0.5 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-acid" />
+                                        <span className="absolute bottom-0.5 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-acid shadow-[0_0_10px_rgba(92,255,92,0.6)]" />
                                     )}
                                 </Link>
                             );
                         })}
                     </nav>
 
-                    {/* Action Buttons - Right side */}
-                    <div className="flex flex-1 items-center justify-end gap-3">
+                    {/* Action Buttons - Right side with better spacing */}
+                    <div className="flex items-center gap-4">
                         <a
                             href={siteConfig.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="group flex items-center justify-center rounded-full border border-forest/40 bg-ink/50 p-2.5 text-bone/70 transition-all hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400"
+                            className="flex items-center justify-center rounded-xl border border-forest/30 bg-ink/50 p-3 text-bone/60 shadow-lg shadow-ink/20 transition-all duration-300 hover:border-acid/40 hover:bg-acid/10 hover:text-acid hover:shadow-acid/20"
                             aria-label="Instagram"
                         >
-                            <InstagramIcon className="h-4 w-4" />
+                            <InstagramIcon className="h-5 w-5" />
                         </a>
                         <div className="hidden md:block">
                             <WhatsAppButton>Commander</WhatsAppButton>
