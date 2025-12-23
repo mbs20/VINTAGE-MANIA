@@ -43,22 +43,38 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-forest/35 bg-ink/70 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo-vintage-mania.png"
-            alt="Vintage Mania"
-            width={44}
-            height={44}
-            priority
-            className="rounded-lg"
-          />
-          <div className="hidden sm:block">
-            <div className="font-display text-2xl leading-none tracking-wide">Vintage Mania</div>
-            <div className="text-xs text-bone/70">Drops thrift / vintage</div>
+      <div className="mx-auto flex max-w-6xl items-center px-4 py-3 md:justify-between">
+        {/* Mobile: Left side (Menu button or spacer to keep logo centered) */}
+        <div className="flex flex-1 items-center md:hidden">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest/20 text-acid/80">
+            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 stroke-current stroke-2">
+              <path d="M4 6h16M4 12h16m-7 6h7" strokeLinecap="round" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Logo Section - Centered on Mobile, Left on Desktop */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 md:gap-3 transition-transform active:scale-95"
+        >
+          <div className="relative overflow-hidden rounded-xl bg-forest/20 p-1">
+            <Image
+              src="/logo-vintage-mania.png"
+              alt="Vintage Mania"
+              width={38}
+              height={38}
+              priority
+              className="rounded-lg"
+            />
+          </div>
+          <div className="flex flex-col justify-center">
+            <div className="font-display text-xl sm:text-2xl leading-none tracking-wide text-acid">VINTAGE MANIA</div>
+            <div className="hidden text-[10px] uppercase tracking-[0.2em] text-bone/50 sm:block">Drops & Thrift</div>
           </div>
         </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((l) => {
             const active = pathname === l.href;
@@ -77,12 +93,13 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        {/* Action Buttons - Right side */}
+        <div className="flex flex-1 items-center justify-end gap-2">
           <a
             href={siteConfig.instagramUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center justify-center rounded-xl border border-forest/50 bg-ink/40 p-2 text-bone/80 transition hover:bg-ink/60 hover:text-bone focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acid md:inline-flex"
+            className="flex items-center justify-center rounded-xl border border-forest/50 bg-ink/40 p-2 text-bone/80 transition hover:bg-ink/60 hover:text-acid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acid"
             aria-label="Instagram"
           >
             <InstagramIcon className="h-5 w-5" />
