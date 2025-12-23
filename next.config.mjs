@@ -12,4 +12,5 @@ const nextConfig = {
   },
 };
 
+// Final configuration for Cloudinary and production build
 export default nextConfig;
