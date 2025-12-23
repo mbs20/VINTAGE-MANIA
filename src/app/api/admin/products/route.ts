@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server';
 import { getProducts, saveProduct, deleteProduct } from '@/lib/db';
 import { Product } from '@/data/products';
@@ -15,12 +14,14 @@ export async function POST(req: NextRequest) {
         const product: Product = {
             ...body,
             id: body.id || randomUUID(),
-            slug: body.slug || body.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '')
+            sku: body.sku || `VM-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+            slug: body.slug || body.name.toLowerCase().replace(/ \//g, '-').replace(/ /g, '-').replace(/[^\w-]/g, '')
         };
 
         await saveProduct(product);
         return NextResponse.json(product);
     } catch (error) {
+        console.error('Error in POST /api/admin/products:', error);
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
@@ -37,6 +38,7 @@ export async function DELETE(req: NextRequest) {
         await deleteProduct(id);
         return NextResponse.json({ success: true });
     } catch (error) {
+        console.error('Error in DELETE /api/admin/products:', error);
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
