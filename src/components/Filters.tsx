@@ -174,35 +174,33 @@ export function Filters({ value, onChange }: Props) {
           Filtres
         </button>
 
-        <div className={cn('fixed inset-0 z-[60]', open ? 'pointer-events-auto' : 'pointer-events-none')}>
-          <div
-            className={cn(
-              'absolute inset-0 bg-black/60 transition',
-              open ? 'opacity-100' : 'opacity-0'
-            )}
-            onClick={() => setOpen(false)}
-          />
-          <div
-            className={cn(
-              'absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-auto rounded-t-3xl border-t border-forest/35 bg-ink/95 p-4 shadow-2xl transition',
-              open ? 'translate-y-0' : 'translate-y-full'
-            )}
-          >
-            <div className="flex items-center justify-between">
-              <div className="font-display text-2xl tracking-wide">Filtres</div>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="rounded-xl border border-forest/40 bg-ink/40 px-4 py-2 text-sm font-bold"
-              >
-                Fermer
-              </button>
+        {/* Mobile Filter Drawer - Only render when open */}
+        {open && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 z-[60] bg-black/60"
+              onClick={() => setOpen(false)}
+            />
+
+            {/* Filter Panel */}
+            <div className="fixed bottom-0 left-0 right-0 z-[70] max-h-[85vh] overflow-auto rounded-t-3xl border-t border-forest/35 bg-ink/95 p-4 shadow-2xl animate-slide-up">
+              <div className="flex items-center justify-between">
+                <div className="font-display text-2xl tracking-wide">Filtres</div>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-forest/40 bg-ink/40 px-4 py-2 text-sm font-bold"
+                >
+                  Fermer
+                </button>
+              </div>
+              <div className="mt-4">
+                <Panel value={value} onChange={onChange} />
+              </div>
             </div>
-            <div className="mt-4">
-              <Panel value={value} onChange={onChange} />
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </>
   );
